@@ -85,7 +85,8 @@ def events():
     if keys[pygame.K_ESCAPE]:
         pygame.quit()
 
-    if event.type == pygame.MOUSEBUTTONDOWN:
+
+    if pygame.mouse.get_pressed()[0] == 1:
         pressed = True
 
     if pressed:
@@ -100,7 +101,7 @@ def events():
         if cooldown >= 1:
             clicked = False
 
-    if event.type == pygame.MOUSEBUTTONUP:
+    if pygame.mouse.get_pressed()[0] == 0:
         pressed = False
 
 
