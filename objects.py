@@ -1,12 +1,13 @@
 import math
-
+import random
 
 class Player:
-
     width = 64
     height = 128
     screenX = (1920 - width) / 2
     screenY = (1080 - height) / 2
+    x = 960
+    y = 540
     maxHealth = 100
     health = 100
     maxMana = 100
@@ -55,21 +56,23 @@ class Projectile:
 class Enemy:
     width, height = 64, 64
     xSpeed, ySpeed = 0, 0
-
+    Dcooldown = 0
     health = 10
+
 
     def __init__(self, x, y, health):
         self.maxHealth = health
         self.health = health
         self.x = x*64
         self.y = y*64
+        self.colour = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def changeDirection(self, playerX, playerY):
-        diffX = -playerX*64 + 1920/2 - self.x 
+        diffX = -playerX*64 + 1920/2 - self.x
         diffY = -playerY*64 + 1080/2 - self.y
 
         n = 80
-        if (diffX**2 + diffY**2)**0.5 <= 9*64:
+        if (diffX**2 + diffY**2)**0.5 <= 12*64:
             if diffX < 0:
                 n *= -1
                 angle = math.atan(diffY / diffX)
